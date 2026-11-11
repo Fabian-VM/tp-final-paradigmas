@@ -1,0 +1,16 @@
+{
+  "name": "tp-final-paradigmas",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "elm-live src/Main.elm --hot -- --output=elm.js",
+    "repl": "elm repl"
+  },
+  "devDependencies": {
+    "elm": "^0.19.1-6",
+    "elm-live": "^4.0.2"
+  }
+}
