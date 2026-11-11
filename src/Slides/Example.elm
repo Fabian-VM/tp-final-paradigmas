@@ -23,7 +23,7 @@ vmap (\\x -> x * 2) [1, 2, 3]
 view : Html msg
 view =
     div
-        [ style "padding" "30px" ]
+        [ style "padding" "40px" ]
         [ h1 [] [ text "Ejemplo de código" ]
         , pre
             [ style "background-color" "#1e1e1e"

@@ -1,48 +1,62 @@
 module Main exposing (main)
 
 import Browser
-import Html exposing (Html, button, div, text)
+import Html exposing (Html, div, text)
 import Html.Attributes exposing (style)
-import Html.Events exposing (onClick)
 
-import Slides.Concepts
-import Slides.Introduction
-import Slides.Example
+
+
+-- Nuestros módulos
+import Slides.Constants
+import Utils.Keyboard
+
+
+
 
 
 -- MODEL
 
+-- Bandera del número de diapositiva
 type alias Model =
     { currentSlide : Int
     }
 
+-- Acciones de la diapositiva
+type Msg
+    = Next
+    | Previous
+    | NoOp
 
-init : Model
-init =
-    { currentSlide = 0 }
+
+init : () -> (Model, Cmd Msg)
+init _ =
+    ( { currentSlide = Slides.Constants.first_slide }, Cmd.none )
 
 
 -- UPDATE
 
-type Msg
-    = Next
-    | Previous
+-- Suscribirse a eventos del teclado (las flechas)
+subscriptions : Model -> Sub Msg
+subscriptions _ =
+    Utils.Keyboard.subscriptions Next Previous NoOp
 
 
-update : Msg -> Model -> Model
+update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
     case msg of
         Next ->
-            { model
-                | currentSlide =
-                    min 2 (model.currentSlide + 1)
-            }
+            ( { model | currentSlide = min Slides.Constants.last_slide (model.currentSlide + 1) }
+            , Cmd.none
+            )
 
         Previous ->
-            { model
-                | currentSlide =
-                    max 0 (model.currentSlide - 1)
-            }
+            ( { model | currentSlide = max Slides.Constants.first_slide (model.currentSlide - 1) }
+            , Cmd.none
+            )
+
+        NoOp ->
+            ( model, Cmd.none )
+
 
 
 -- VIEW
@@ -52,67 +66,34 @@ view model =
     div
         [ style "font-family" "Arial, sans-serif"
         , style "padding" "40px"
-        , style "max-width" "900px"
-        , style "margin" "auto"
         ]
         [ div
-            [ style "min-height" "350px" ]
-            [ viewSlide model.currentSlide ]
-        , div
             [ style "display" "flex"
             , style "justify-content" "space-between"
             , style "align-items" "center"
             , style "margin-top" "30px"
             ]
-            [ button
-                [ onClick Previous
-                , style "padding" "10px 20px"
-                , style "cursor" "pointer"
-                , style "opacity"
-                    (if model.currentSlide == 0 then "0.4" else "1")
-                ]
-                [ text "Anterior" ]
-
-            , text
-                (String.fromInt (model.currentSlide + 1)
-                    ++ " / 3"
+            [ text
+                (String.fromInt (model.currentSlide)
+                    ++ " / " 
+                    ++ String.fromInt(Slides.Constants.last_slide )
                 )
-
-            , button
-                [ onClick Next
-                , style "padding" "10px 20px"
-                , style "cursor" "pointer"
-                , style "opacity"
-                    (if model.currentSlide == 2 then "0.4" else "1")
-                ]
-                [ text "Siguiente" ]
             ]
+        , div
+            [ style "min-height" "350px" ]
+            [ Slides.Constants.getSlide model.currentSlide ]
         ]
 
-
-viewSlide : Int -> Html Msg
-viewSlide index =
-    case index of
-        0 ->
-            Slides.Introduction.view
-
-        1 ->
-            Slides.Concepts.view
-
-        2 ->
-            Slides.Example.view
-
-        _ ->
-            text "Diapositiva no encontrada"
 
 
 -- MAIN
 
 main : Program () Model Msg
 main =
-    Browser.sandbox
+    Browser.element
         { init = init
         , update = update
         , view = view
+        , subscriptions = subscriptions
         }
 

@@ -8,7 +8,7 @@ view : Html msg
 view =
     div
         [ style "text-align" "center"
-        , style "padding" "80px 20px"
+        , style "padding" "80px 40px"
         ]
         [ h1
             [ style "font-size" "48px" ]
