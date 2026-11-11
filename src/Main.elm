@@ -1,83 +1,114 @@
-module Main exposing (..)
+module Main exposing (main)
 
 import Browser
-import Html exposing (Html, button, div, h1, p, text)
-import Html.Attributes exposing (class)
+import Html exposing (Html, button, div, text)
+import Html.Attributes exposing (style)
 import Html.Events exposing (onClick)
 
+import Slides.Concepts
+import Slides.Introduction
 
-hello = "hi"
 
+-- MODEL
 
--- Similar a un registro, diccionario u objeto
 type alias Model =
-    { slide : Int }
+    { currentSlide : Int
+    }
 
 
--- Similar a un enum, hay que ver que es exactamente
+init : Model
+init =
+    { currentSlide = 0 }
+
+
+-- UPDATE
+
 type Msg
     = Next
     | Previous
 
 
-
-init _ =
-    ( { slide = 0 }, Cmd.none )
-
-
+update : Msg -> Model -> Model
 update msg model =
     case msg of
         Next ->
-            ( { model | slide = min 2 (model.slide + 1) }
-            , Cmd.none
-            )
+            { model
+                | currentSlide =
+                    min 1 (model.currentSlide + 1)
+            }
 
         Previous ->
-            ( { model | slide = max 0 (model.slide - 1) }
-            , Cmd.none
-            )
+            { model
+                | currentSlide =
+                    max 0 (model.currentSlide - 1)
+            }
 
+
+-- VIEW
 
 view : Model -> Html Msg
 view model =
-    div [ class "presentation" ]
-        [ viewSlide model.slide
-        , div []
-            [ button [ onClick Previous ] [ text "Anterior" ]
-            , button [ onClick Next ] [ text "Siguiente" ]
+    div
+        [ style "font-family" "Arial, sans-serif"
+        , style "padding" "40px"
+        , style "max-width" "900px"
+        , style "margin" "auto"
+        ]
+        [ div
+            [ style "min-height" "350px" ]
+            [ viewSlide model.currentSlide ]
+        , div
+            [ style "display" "flex"
+            , style "justify-content" "space-between"
+            , style "align-items" "center"
+            , style "margin-top" "30px"
+            ]
+            [ button
+                [ onClick Previous
+                , style "padding" "10px 20px"
+                , style "cursor" "pointer"
+                , style "opacity"
+                    (if model.currentSlide == 0 then "0.4" else "1")
+                ]
+                [ text "Anterior" ]
+
+            , text
+                (String.fromInt (model.currentSlide + 1)
+                    ++ " / 2"
+                )
+
+            , button
+                [ onClick Next
+                , style "padding" "10px 20px"
+                , style "cursor" "pointer"
+                , style "opacity"
+                    (if model.currentSlide == 1 then "0.4" else "1")
+                ]
+                [ text "Siguiente" ]
             ]
         ]
 
 
 viewSlide : Int -> Html Msg
-viewSlide slide =
-    case slide of
+viewSlide index =
+    case index of
         0 ->
-            div []
-                [ h1 [] [ text "Introducción a Elm" ]
-                , p [] [ text "Mi presentación" ]
-                ]
+            Slides.Introduction.view
 
         1 ->
-            div []
-                [ h1 [] [ text "¿Qué es Elm?" ]
-                , p [] [ text "Un lenguaje funcional para aplicaciones web." ]
-                ]
+            Slides.Concepts.view
 
         _ ->
-            div []
-                [ h1 [] [ text "Conclusiones" ]
-                , p [] [ text "Gracias por su atención." ]
-                ]
+            text "Diapositiva no encontrada"
 
+
+-- MAIN
 
 main : Program () Model Msg
 main =
-    Browser.element
+    Browser.sandbox
         { init = init
         , update = update
         , view = view
-        , subscriptions = \_ -> Sub.none
         }
-
 
