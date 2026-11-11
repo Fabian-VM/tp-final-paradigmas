@@ -7,6 +7,7 @@ import Html.Events exposing (onClick)
 
 import Slides.Concepts
 import Slides.Introduction
+import Slides.Example
 
 
 -- MODEL
@@ -34,7 +35,7 @@ update msg model =
         Next ->
             { model
                 | currentSlide =
-                    min 1 (model.currentSlide + 1)
+                    min 2 (model.currentSlide + 1)
             }
 
         Previous ->
@@ -74,7 +75,7 @@ view model =
 
             , text
                 (String.fromInt (model.currentSlide + 1)
-                    ++ " / 2"
+                    ++ " / 3"
                 )
 
             , button
@@ -82,7 +83,7 @@ view model =
                 , style "padding" "10px 20px"
                 , style "cursor" "pointer"
                 , style "opacity"
-                    (if model.currentSlide == 1 then "0.4" else "1")
+                    (if model.currentSlide == 2 then "0.4" else "1")
                 ]
                 [ text "Siguiente" ]
             ]
@@ -97,6 +98,9 @@ viewSlide index =
 
         1 ->
             Slides.Concepts.view
+
+        2 ->
+            Slides.Example.view
 
         _ ->
             text "Diapositiva no encontrada"
