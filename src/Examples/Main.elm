@@ -1,8 +1,16 @@
 module Examples.Main exposing (..)
-import Html
+
+-- TIPOS DE DATOS
+
+-- Constrained data types
+
+add : number -> number -> number
+add x y = x + y
+
+-- UNIDADES (FUNCIONES)
 
 -- Versión Haskell
--- vfilter : (a -> Bool) -> [a] -> [b]
+-- vfilter :: (a -> Bool) -> [a] -> [b]
 -- vfilter _ [] = []
 -- vfilter p (x:xs)
 --    | p x       = x : vfilter p xs
@@ -21,6 +29,9 @@ vfilter p list =
         [] -> 
             []
 
+
+-- ETC
+
 -- Pipes
 -- [1,2,3] |> List.map ((*)2) |> List.filter ((>)3)
 -- List.filter ((>)3) <| [1,2,3] 
@@ -29,9 +40,3 @@ vfilter p list =
 -- >>
 -- <<
 
--- Al compilar es necesario que tenga un main
--- El main debe usar la función, de lo contrario no lo incluye en el archivo compilado
-main : Html.Html msg
-main =
-    let result = vfilter ((<)2) [1, 2, 3, 4, 5]
-    in Html.text (String.fromInt (List.length result))

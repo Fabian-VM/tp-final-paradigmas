@@ -7,6 +7,7 @@
 `src/Examples/` contiene código con fines de mostrar sintaxis y ejemplos de Elm
 
 `src/Slides` contiene código de los slides
+
 `src/Utils/` contiene utilidades necesarias para los slides
 
 ## Setup
