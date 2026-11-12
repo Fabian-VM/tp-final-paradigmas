@@ -1,11 +1,25 @@
 
+## Proyecto
+
+`src/` contiene el código Elm para las diapositivas de la presentación
+
+
+`src/Examples/` contiene código con fines de mostrar sintaxis y ejemplos de Elm
+
+`src/Slides` contiene código de los slides
+`src/Utils/` contiene utilidades necesarias para los slides
+
 ## Setup
 Instalar dependencias con `npm ci`
 
-## Interprete
+## Interprete y desarollo de ejemplos
 Para usar el interprete `npm run repl`.
 
-Dentro del interprete se puede cargar cualquier modulo dentro de los archivos de `src/`, usando en el intérprete `import <nombre del modulo>`
+Dentro del interprete se puede cargar cualquier modulo dentro de los archivos de `src/` usando en el intérprete `import <nombre del modulo>`
+
+Por ejemplo `import Examples.Main`
+
+O para no tener que escribir los nombres completos de las funciones `import Examples.Main exposing (..)`
 
 
 ## Desarrollo web o gráfico
