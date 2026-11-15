@@ -10,7 +10,7 @@ vsum list =
 
 -- Al compilar es necesario que tenga un main
 -- El main debe usar la función, de lo contrario no lo incluye en el archivo compilado
-main : Html.Html msg
+main : Html.Html a
 main =
     let result = vsum [1, 2, 3, 4, 5]
     in Html.text (String.fromInt result)

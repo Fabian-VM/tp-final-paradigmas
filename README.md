@@ -13,6 +13,13 @@
 ## Setup
 Instalar dependencias con `npm ci`
 
+## Compilar código (solo para ver cómo queda compilado)
+Solo para poder obtener un javascript compilado, se puede usar el siguiente comando:
+`npm run compile -- ruta/a/archivo.elm --output=ruta/a/archivo-compilado.js`
+
+Por ejemplo `npm run compile -- src/Examples/Compile.elm --output=ejemplo.js`
+
+
 ## Interprete y desarollo de ejemplos
 Para usar el interprete `npm run repl`.
 
