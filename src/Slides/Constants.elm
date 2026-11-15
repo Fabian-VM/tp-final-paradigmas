@@ -6,12 +6,13 @@ import Slides.Concepts
 import Slides.Introduction
 import Slides.Example
 import Slides.PlotTwist
+import Slides.Architecture
 
 first_slide : Int
 first_slide = 1
 
 last_slide : Int
-last_slide = 4
+last_slide = 6
 
 slides : List (Html msg)
 slides =
@@ -19,6 +20,7 @@ slides =
     , Slides.Concepts.view
     , Slides.Example.view
     , Slides.PlotTwist.view
+    , Slides.Architecture.view
     ]
 
 getSlide : Int -> Html msg
