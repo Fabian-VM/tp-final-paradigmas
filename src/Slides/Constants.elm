@@ -2,29 +2,66 @@ module Slides.Constants exposing (..)
 
 import Html exposing (Html, text)
 
-import Slides.Concepts
 import Slides.Portada
-import Slides.Example
-import Slides.PlotTwist
-import Slides.Architecture
 import Slides.Implementacion
 import Slides.Introduccion
+import Slides.Paradigmas
+import Slides.Tipos1
+import Slides.Tipos2
+import Slides.Tipos3
+import Slides.Tipos4
+import Slides.Tipos5
+import Slides.Tipos6
+import Slides.Tipos7
+import Slides.Sintaxis1
+import Slides.Sintaxis2
+import Slides.FlujoEjecucion1
+import Slides.FlujoEjecucion2
+import Slides.Excepciones1
+import Slides.Excepciones2
+import Slides.PlotTwist
+import Slides.DesarrolloInterfaces1
+import Slides.DesarrolloInterfaces2
+import Slides.Comunicacion1
+import Slides.Comunicacion2
+import Slides.Comunicacion3
+import Slides.Comunicacion4
+import Slides.CriteriosLenguaje
 
 first_slide : Int
 first_slide = 1
 
 last_slide : Int
-last_slide = 6
+last_slide = 25
 
 slides : List (Html msg)
 slides =
     [ Slides.Portada.view
     , Slides.Introduccion.view
     , Slides.Implementacion.view
-    , Slides.Concepts.view
-    , Slides.Example.view
+    , Slides.Paradigmas.view
+    , Slides.Tipos1.view
+    , Slides.Tipos2.view
+    , Slides.Tipos3.view
+    , Slides.Tipos4.view
+    , Slides.Tipos5.view
+    , Slides.Tipos6.view
+    , Slides.Tipos7.view
+    , Slides.Sintaxis1.view
+    , Slides.Sintaxis2.view
+    , Slides.FlujoEjecucion1.view
+    , Slides.FlujoEjecucion2.view
+    , Slides.Excepciones1.view
+    , Slides.Excepciones2.view
     , Slides.PlotTwist.view
-    , Slides.Architecture.view
+    , Slides.DesarrolloInterfaces1.view
+    , Slides.DesarrolloInterfaces2.view
+    , Slides.Comunicacion1.view
+    , Slides.Comunicacion2.view
+    , Slides.Comunicacion3.view
+    , Slides.Comunicacion4.view
+    , Slides.CriteriosLenguaje.view
+
     ]
 
 getSlide : Int -> Html msg

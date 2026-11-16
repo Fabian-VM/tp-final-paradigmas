@@ -1,4 +1,4 @@
-module Slides.Architecture exposing (view)
+module Slides.DesarrolloInterfaces2 exposing (view)
 
 import Html exposing (Html, code, details, div, h1, h3, node, p, pre, summary, text)
 import Html.Attributes exposing (attribute, class, style)
@@ -13,7 +13,7 @@ view =
         , style "font-family" "sans-serif"
         ]
         [ node "style" [] [ text cssZoom ]
-        , h1 [ style "margin-bottom" "30px" ] [ text "The Elm Architecture" ]
+        , h1 [ style "margin-bottom" "30px" ] [ text "8. Desarrollo de interfaces" ]
         , div
             [ style "display" "flex"
             , style "gap" "24px"
