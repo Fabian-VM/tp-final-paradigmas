@@ -4,11 +4,9 @@ import Browser
 import Html exposing (Html, div, text)
 import Html.Attributes exposing (style)
 
-
-
 -- Nuestros módulos
 import Slides.Constants
-import Utils.Keyboard
+import Utils.Keyboard exposing (onArrowKeyDownSubscription)
 
 
 
@@ -38,7 +36,7 @@ init _ =
 -- Suscribirse a eventos del teclado (las flechas)
 subscriptions : Model -> Sub Msg
 subscriptions _ =
-    Utils.Keyboard.subscriptions Next Previous NoOp
+    onArrowKeyDownSubscription Next Previous Previous Next NoOp
 
 
 update : Msg -> Model -> (Model, Cmd Msg)

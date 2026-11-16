@@ -1,32 +1,43 @@
-module Utils.Keyboard exposing (..)
+module Utils.Keyboard exposing (onArrowKeyDownSubscription, onEnterKeyDownSubscription)
 
 import Browser.Events
 import Json.Decode as Decode
 
-
-subscriptions : msg -> msg -> msg -> Sub msg
-subscriptions next previous noOp =
-    Browser.Events.onKeyDown
-        (Decode.map
-            (keyToMsg next previous noOp)
-            (Decode.field "key" Decode.string)
-        )
+-- ASI ES, TODO ESTO SOLO PARA ESCUCHAR LAS FLECHAS Y EL ENTER
 
 
-keyToMsg : msg -> msg -> msg -> String -> msg
-keyToMsg next previous noOp key =
+-- Obtiene la suscripción para escuchar específicamente la tecla Enter
+onEnterKeyDownSubscription : msg -> msg -> Sub msg
+onEnterKeyDownSubscription enter noOp =
+    Browser.Events.onKeyDown <| buildDecoder (selectEnterMsg enter noOp) keyDecoder
+
+-- Obtiene la suscripción para escuchar teclas direccionales
+onArrowKeyDownSubscription : msg -> msg -> msg -> msg -> msg -> Sub msg
+onArrowKeyDownSubscription up down left right none =
+    Browser.Events.onKeyDown <| buildDecoder (selectArrowMsg up down left right none) keyDecoder
+
+-- Arma otro decodificador, que sea capaz de obtener el nombre de la tecla presionada
+-- y transformar eso en un msg
+buildDecoder : (String -> msg) -> Decode.Decoder String -> Decode.Decoder msg
+buildDecoder keyToMsg readKey = Decode.map keyToMsg readKey
+
+-- Obtiene el decodificador que extrae el campo de tecla presionada
+keyDecoder : Decode.Decoder String
+keyDecoder = Decode.field "key" Decode.string
+
+-- Selecciona qué valor de msg usar según nombres de teclas direccionales
+selectArrowMsg : msg -> msg -> msg -> msg -> msg -> String -> msg
+selectArrowMsg up down left right none key =
     case key of
-        "ArrowRight" ->
-            next
+        "ArrowRight" -> up
+        "ArrowDown" -> down
+        "ArrowUp" -> left
+        "ArrowLeft" -> right
+        _ -> none
 
-        "ArrowDown" ->
-            next
-
-        "ArrowUp" ->
-            previous
-
-        "ArrowLeft" ->
-            previous
-
-        _ ->
-            noOp
+-- Selecciona qué valor de msg usar según si la tecla presionada es Enter
+selectEnterMsg : msg -> msg -> String -> msg
+selectEnterMsg enter noOp key =
+    case key of
+        "Enter" -> enter
+        _ -> noOp

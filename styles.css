@@ -1,0 +1,23 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.json-box {
+    width: 600px;           /* Ancho fijo */
+    max-width: 100%;        /* Evita desbordes si la pantalla es más chica */
+    max-height: 400px;      /* Alto máximo con scroll vertical */
+    overflow: auto;         /* Habilita barras de desplazamiento */
+    
+    /* Para que el texto no se escape por los costados */
+    white-space: pre-wrap;  /* Respeta saltos de línea y ajusta el texto al ancho */
+    word-break: break-word; /* Corta cadenas muy largas (como URLs de sprites) */
+    
+    /* Estética tipo bloque de código */
+    font-family: Consolas, Monaco, 'Courier New', monospace;
+    font-size: 13px;
+    padding: 16px;
+    border-radius: 8px;
+    margin-top: 16px;
+    box-sizing: border-box;
+}
