@@ -40,18 +40,6 @@ vfilter p list =
 -- >>
 -- <<
 
-
-type alias Producto =
-    { nombre : String
-    , precio : Float
-    , enStock : Bool
-    }
-
-aplicarDescuento : Producto -> Float -> Producto
-aplicarDescuento producto porcentaje =
-    { producto | precio = producto.precio * (1-porcentaje) }
-
-
 procesar : List Int -> List Int
 
 -- procesar numeros = (List.map ((*)10) >> List.filter ((>)10)) numeros
@@ -111,6 +99,14 @@ type alias Animal =
     , nombre : Nombre
     , meses : Int
     }
+
+-- Para probar las reglas de equivalencia
+type alias Animal2 = 
+    { id : Int
+    , nombre : String
+    , meses : Id
+    }
+
 type alias ImpresorAnimal = Animal -> String
 mostrarAnimal : ImpresorAnimal
 
@@ -121,4 +117,14 @@ mostrarAnimal animal =
     " meses"
 -- mostrarAnimal { id = 1, nombre = "michi", meses = 24 } -> "Animal N° 1 llamado michi tiene 24 meses" 
 -- mostrarAnimal ( Animal 1 "michi" 24 )
+-- mostrarAnimal ( Animal2 1 "michi" 24 )
+
+sinTexto : String -> String
+sinTexto texto =
+    let
+        largo = String.length texto
+    in
+    case largo of
+        0 -> "El texto está vacío"
+        _ -> "El texto no está vacío"
 
