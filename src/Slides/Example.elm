@@ -1,7 +1,7 @@
 module Slides.Example exposing (view)
 
 import Html exposing (Html, code, div, h1, pre, text)
-import Html.Attributes exposing (style)
+import Html.Attributes exposing (class)
 
 codigo : String
 codigo =
@@ -22,14 +22,8 @@ vmap (\\x -> x * 2) [1, 2, 3]
 
 view : Html msg
 view =
-    div
-        [ style "padding" "40px" ]
+    div [ class "content-slide" ]
         [ h1 [] [ text "Ejemplo de código" ]
-        , pre
-            [ style "background-color" "#1e1e1e"
-            , style "color" "#d4d4d4"
-            , style "padding" "25px"
-            , style "border-radius" "10px"
-            ]
+        , pre [ class "code-example" ]
             [ code [] [ text codigo ] ]
         ]

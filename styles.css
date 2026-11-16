@@ -1,23 +1,58 @@
 body {
     margin: 0;
     padding: 0;
+    font-family: Arial, sans-serif;
 }
 
-.json-box {
-    width: 600px;           /* Ancho fijo */
-    max-width: 100%;        /* Evita desbordes si la pantalla es más chica */
-    max-height: 400px;      /* Alto máximo con scroll vertical */
-    overflow: auto;         /* Habilita barras de desplazamiento */
-    
-    /* Para que el texto no se escape por los costados */
-    white-space: pre-wrap;  /* Respeta saltos de línea y ajusta el texto al ancho */
-    word-break: break-word; /* Corta cadenas muy largas (como URLs de sprites) */
-    
-    /* Estética tipo bloque de código */
-    font-family: Consolas, Monaco, 'Courier New', monospace;
-    font-size: 13px;
-    padding: 16px;
-    border-radius: 8px;
-    margin-top: 16px;
-    box-sizing: border-box;
+
+/* Contenedores principales */
+.presentation-container {
+    padding: 40px;
+}
+
+.slide-counter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.slide-container {
+    min-height: 350px;
+}
+
+
+/* Contenido del slide de portada */
+
+.title-slide {
+    text-align: center;
+    padding: 80px 40px;
+}
+
+.title-slide h1 {
+    font-size: 48px;
+}
+
+.title-slide p {
+    font-size: 22px;
+    color: #666;
+}
+
+/* Contenido del resto de slides */
+
+.content-slide {
+    padding: 40px;
+}
+
+.content-slide ul, p {
+    font-size: 20px;
+    line-height: 2;
+}
+
+.code-example {
+    background-color: #f5f5f5;
+    color: #333333;
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid #dddddd;
 }

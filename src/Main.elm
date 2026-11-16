@@ -2,42 +2,41 @@ module Main exposing (main)
 
 import Browser
 import Html exposing (Html, div, text)
-import Html.Attributes exposing (style)
-
--- Nuestros módulos
+import Html.Attributes exposing (class)
 import Slides.Constants
-import Utils.Keyboard exposing (onArrowKeyDownSubscription)
+import Utils.Keyboard exposing (onArrowKeyDownSubscription, onEnterKeyDownSubscription)
 
 
+-- MAIN
 
+main : Program () Model Msg
+main =
+    Browser.element
+        { init = init
+        , update = update
+        , view = view
+        , subscriptions = subscriptions
+        }
 
 
 -- MODEL
 
--- Bandera del número de diapositiva
-type alias Model =
-    { currentSlide : Int
-    }
-
--- Acciones de la diapositiva
-type Msg
-    = Next
-    | Previous
-    | NoOp
-
+type alias Model = { currentSlide : Int }
 
 init : () -> (Model, Cmd Msg)
-init _ =
-    ( { currentSlide = Slides.Constants.first_slide }, Cmd.none )
+init _ = ( { currentSlide = Slides.Constants.first_slide }, Cmd.none )
+
 
 
 -- UPDATE
 
--- Suscribirse a eventos del teclado (las flechas)
-subscriptions : Model -> Sub Msg
-subscriptions _ =
-    onArrowKeyDownSubscription Next Previous Previous Next NoOp
+type Msg = Next | Previous | NoOp
 
+subscriptions : Model -> Sub Msg
+subscriptions _ = Sub.batch [ 
+    onArrowKeyDownSubscription Previous Next Previous Next NoOp,
+    onEnterKeyDownSubscription Next NoOp
+    ]
 
 update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
@@ -61,37 +60,9 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-    div
-        [ style "font-family" "Arial, sans-serif"
-        , style "padding" "40px"
-        ]
-        [ div
-            [ style "display" "flex"
-            , style "justify-content" "space-between"
-            , style "align-items" "center"
-            , style "margin-top" "30px"
-            ]
-            [ text
-                (String.fromInt (model.currentSlide)
-                    ++ " / " 
-                    ++ String.fromInt(Slides.Constants.last_slide )
-                )
-            ]
-        , div
-            [ style "min-height" "350px" ]
+    div [ class "presentation-container" ]
+        [ div [ class "slide-counter" ]
+            [ text <| Slides.Constants.getProgress model.currentSlide ]
+        , div [ class "slide-container" ]
             [ Slides.Constants.getSlide model.currentSlide ]
         ]
-
-
-
--- MAIN
-
-main : Program () Model Msg
-main =
-    Browser.element
-        { init = init
-        , update = update
-        , view = view
-        , subscriptions = subscriptions
-        }
-

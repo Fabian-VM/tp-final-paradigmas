@@ -29,10 +29,10 @@ keyDecoder = Decode.field "key" Decode.string
 selectArrowMsg : msg -> msg -> msg -> msg -> msg -> String -> msg
 selectArrowMsg up down left right none key =
     case key of
-        "ArrowRight" -> up
+        "ArrowRight" -> right
         "ArrowDown" -> down
-        "ArrowUp" -> left
-        "ArrowLeft" -> right
+        "ArrowUp" -> up
+        "ArrowLeft" -> left
         _ -> none
 
 -- Selecciona qué valor de msg usar según si la tecla presionada es Enter

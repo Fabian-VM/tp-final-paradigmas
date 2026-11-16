@@ -1,12 +1,14 @@
 module Examples.Compile exposing (..)
 import Html
 
-vsum : List Int -> Int
+-- IMPLEMENTACIÓN
+
+-- Elm - Realiza la sumatoria de los números enteros de la lista
+vsum : List Int -> Int 
 vsum list =
     case list of
         x :: xs -> x + vsum xs
         [] -> 0
-
 
 -- Al compilar es necesario que tenga un main
 -- El main debe usar la función, de lo contrario no lo incluye en el archivo compilado
