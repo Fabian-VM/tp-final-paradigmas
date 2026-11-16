@@ -18,6 +18,9 @@ view =
         , p []
             [ text "El tipo de dato Cmd representa la ejecución de una acción puntual por el runtime, como una petición HTTP." ]
 
+        , p []
+            [ text "El tipo de dato Sub representa la declaración de interés por un evento global del navegador, y qué mensaje se debe recibir cuando suceda." ]
+
         , pre [ class "code-example" ]
             [ code [] [ text codigo ] ]
         ]

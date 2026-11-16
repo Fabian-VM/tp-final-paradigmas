@@ -16,7 +16,7 @@ view =
         [ h1 [] [ text "9. Comunicación con el exterior" ]
 
         , p []
-            [ text "El tipo de dato Sub representa la declaración de interés por un evento global del navegador, y qué mensaje se debe recibir cuando suceda." ]
+            [ text "El tipo de dato Task representa una operación asíncrona que puede encadenarse, o fallar." ]
 
         , pre [ class "code-example" ]
             [ code [] [ text codigo ] ]
