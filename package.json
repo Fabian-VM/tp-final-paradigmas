@@ -7,6 +7,7 @@
   "type": "commonjs",
   "scripts": {
     "dev": "elm-live src/Main.elm --hot -- --output=elm.js",
+    "dev:api": "elm-live src/Examples/API.elm --hot -- --output=api.js",
     "repl": "elm repl",
     "compile": "npx elm make"
   },

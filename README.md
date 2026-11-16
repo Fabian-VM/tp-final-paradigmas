@@ -34,6 +34,8 @@ O para no tener que escribir los nombres completos de las funciones `import Exam
 
 Para usar elm-live con hot reload `npm run dev`. Con eso los cambios que se hagan en `src/Main.elm` se van a ver reflejados automáticamente. Igual cualquier cosa conviene hacer F5 por si se corrompe el estado (es algo que el propio elm-live dice al iniciar)
 
+Para ejecutar el ejemplo de la PokéAPI en el navegador, usar `npm run dev:api` y abrir `http://localhost:8000/api.html`. Este comando compila `src/Examples/API.elm` y sirve la página `api.html`; la presentación normal sigue disponible con `npm run dev`.
+
 Lo que hace es lo siguiente:
 - Se ejecuta el comando `elm-live src/Main.elm --hot -- --output=elm.js` que indica que se compile el `src/Main.elm` para generar `elm.js` (un archivo tirado en la raíz de este proyecto) y que el proceso se quede escuchando los cambios para hacer el hot reload
 - Adentro del `index.html` se importa dicho codigo usando `<script src="elm.js"></script>`, y luego se invoca a la función main de ese modulo con `Elm.Main.init({ node: document.getElementById("app") });`. 
