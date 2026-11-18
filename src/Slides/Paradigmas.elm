@@ -14,7 +14,7 @@ view =
             [ text "Debido a la alta complejidad, creó su propio modelo The Elm Architecture (TEA)." ]
 
         , p []
-            [ text "Soporta la programación funcional, y la reactiva (no de forma pura)." ]
+            [ text "Soporta la programación funcional, y los aspectos reactivos necesarios." ]
 
         , p []
             [ text "Pueden lograrse algunos aspectos de la programación orientada a objetos." ]
