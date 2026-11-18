@@ -7,14 +7,9 @@ import Slides.Implementacion
 import Slides.Introduccion
 import Slides.Paradigmas
 import Slides.Tipos1
-import Slides.Tipos2
 import Slides.Tipos3
-import Slides.Tipos4
-import Slides.Tipos5
 import Slides.Tipos6
-import Slides.Tipos7
 import Slides.Sintaxis1
-import Slides.Sintaxis2
 import Slides.FlujoEjecucion1
 import Slides.FlujoEjecucion2
 import Slides.Excepciones1
@@ -32,7 +27,7 @@ first_slide : Int
 first_slide = 1
 
 last_slide : Int
-last_slide = 25
+last_slide = 20
 
 slides : List (Html msg)
 slides =
@@ -41,14 +36,9 @@ slides =
     , Slides.Implementacion.view
     , Slides.Paradigmas.view
     , Slides.Tipos1.view
-    , Slides.Tipos2.view
     , Slides.Tipos3.view
-    , Slides.Tipos4.view
-    , Slides.Tipos5.view
     , Slides.Tipos6.view
-    , Slides.Tipos7.view
     , Slides.Sintaxis1.view
-    , Slides.Sintaxis2.view
     , Slides.FlujoEjecucion1.view
     , Slides.FlujoEjecucion2.view
     , Slides.Excepciones1.view
