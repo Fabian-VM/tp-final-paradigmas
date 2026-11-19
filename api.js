@@ -6133,9 +6133,9 @@ var $elm$http$Http$get = function (r) {
 	return $elm$http$Http$request(
 		{body: $elm$http$Http$emptyBody, expect: r.expect, headers: _List_Nil, method: 'GET', timeout: $elm$core$Maybe$Nothing, tracker: $elm$core$Maybe$Nothing, url: r.url});
 };
-var $author$project$Examples$API$Pokemon = F4(
-	function (id, name, imageUrl, types) {
-		return {id: id, imageUrl: imageUrl, name: name, types: types};
+var $author$project$Examples$API$Pokemon = F5(
+	function (id, name, imageUrl, types, stats) {
+		return {id: id, imageUrl: imageUrl, name: name, stats: stats, types: types};
 	});
 var $elm$json$Json$Decode$field = _Json_decodeField;
 var $elm$json$Json$Decode$at = F2(
@@ -6150,14 +6150,30 @@ var $author$project$Examples$API$imageDecoder = A2(
 	$elm$json$Json$Decode$string);
 var $elm$json$Json$Decode$int = _Json_decodeInt;
 var $elm$json$Json$Decode$list = _Json_decodeList;
-var $elm$json$Json$Decode$map4 = _Json_map4;
+var $elm$json$Json$Decode$map5 = _Json_map5;
+var $author$project$Examples$API$Stat = F2(
+	function (name, value) {
+		return {name: name, value: value};
+	});
+var $author$project$Examples$API$statDecoder = A3(
+	$elm$json$Json$Decode$map2,
+	$author$project$Examples$API$Stat,
+	A2(
+		$elm$json$Json$Decode$at,
+		_List_fromArray(
+			['stat', 'name']),
+		$elm$json$Json$Decode$string),
+	A2(
+		$elm$json$Json$Decode$map,
+		$elm$core$String$fromInt,
+		A2($elm$json$Json$Decode$field, 'base_stat', $elm$json$Json$Decode$int)));
 var $author$project$Examples$API$typeDecoder = A2(
 	$elm$json$Json$Decode$at,
 	_List_fromArray(
 		['type', 'name']),
 	$elm$json$Json$Decode$string);
-var $author$project$Examples$API$pokemonDecoder = A5(
-	$elm$json$Json$Decode$map4,
+var $author$project$Examples$API$pokemonDecoder = A6(
+	$elm$json$Json$Decode$map5,
 	$author$project$Examples$API$Pokemon,
 	A2($elm$json$Json$Decode$field, 'id', $elm$json$Json$Decode$int),
 	A2($elm$json$Json$Decode$field, 'name', $elm$json$Json$Decode$string),
@@ -6165,7 +6181,11 @@ var $author$project$Examples$API$pokemonDecoder = A5(
 	A2(
 		$elm$json$Json$Decode$field,
 		'types',
-		$elm$json$Json$Decode$list($author$project$Examples$API$typeDecoder)));
+		$elm$json$Json$Decode$list($author$project$Examples$API$typeDecoder)),
+	A2(
+		$elm$json$Json$Decode$field,
+		'stats',
+		$elm$json$Json$Decode$list($author$project$Examples$API$statDecoder)));
 var $elm$core$String$toLower = _String_toLower;
 var $author$project$Examples$API$fetchPokemon = function (name) {
 	return $elm$http$Http$get(
@@ -6306,6 +6326,15 @@ var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
 var $elm$core$String$trim = _String_trim;
 var $elm$html$Html$ul = _VirtualDom_node('ul');
 var $elm$html$Html$Attributes$value = $elm$html$Html$Attributes$stringProperty('value');
+var $author$project$Examples$API$viewStat = function (stat) {
+	return A2(
+		$elm$html$Html$li,
+		_List_Nil,
+		_List_fromArray(
+			[
+				$elm$html$Html$text(stat.name + (': ' + stat.value))
+			]));
+};
 var $author$project$Examples$API$view = function (model) {
 	return A2(
 		$elm$html$Html$div,
@@ -6402,7 +6431,18 @@ var $author$project$Examples$API$view = function (model) {
 														$elm$html$Html$text(t)
 													]));
 										},
-										pokemon.types))
+										pokemon.types)),
+									A2(
+									$elm$html$Html$p,
+									_List_Nil,
+									_List_fromArray(
+										[
+											$elm$html$Html$text('Estadisticas:')
+										])),
+									A2(
+									$elm$html$Html$ul,
+									_List_Nil,
+									A2($elm$core$List$map, $author$project$Examples$API$viewStat, pokemon.stats))
 								]));
 				}
 			}()

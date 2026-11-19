@@ -9,6 +9,8 @@ elm-stuff/
 
 # Generated JavaScript
 elm.js
+api.js
+portexample.js
 
 # Environment variables
 .env

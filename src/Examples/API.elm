@@ -9,27 +9,33 @@ import Json.Decode as Decode exposing (Decoder, field, int, list, string)
 
 
 -- 1. MODELO Y TIPOS DE DATOS
-
-type alias Pokemon =
-    { id : Int
-    , name : String
-    , imageUrl : String
-    , types : List String
+type alias Pokemon = -- Ej: Eevee
+    { id : Int  -- 133
+    , name : String -- eevee
+    , imageUrl : String -- imagen
+    , types : List String -- tipos: normal
+    , stats : List Stat -- lista de las estadisticas
     }
 
+-- modelo de estadisticas
+type alias Stat =
+    { name : String -- el nombre
+    , value : String -- la estadistica base
+    }
 
+-- estado de la bussqueda
 type Status
     = Loading
     | Loaded Pokemon
     | Failed Http.Error
 
-
+-- modelo de busqueda
 type alias Model =
     { pokemon : Status
     , search : String
     }
 
-
+-- funcion inicial
 init : () -> ( Model, Cmd Msg )
 init _ =
     ( { pokemon = Loading, search = "" }
@@ -38,13 +44,13 @@ init _ =
 
 
 -- 2. MENSAJES Y UPDATE
-
+-- mensaje de resultado
 type Msg
     = FetchPokemon String
     | PokemonFetched (Result Http.Error Pokemon)
     | SearchChange String
 
-
+-- actualizacion del modelo
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
@@ -75,11 +81,12 @@ fetchPokemon name =
 
 pokemonDecoder : Decoder Pokemon
 pokemonDecoder =
-    Decode.map4 Pokemon
+    Decode.map5 Pokemon
         (field "id" int)
         (field "name" string)
         imageDecoder
         (field "types" (list typeDecoder))
+        (field "stats" (list statDecoder))
 
 
 -- Navega por: sprites -> other -> official-artwork -> front_default
@@ -94,6 +101,14 @@ imageDecoder =
 typeDecoder : Decoder String
 typeDecoder =
     Decode.at [ "type", "name" ] string
+
+-- el map para acomodar las estadisticas
+statDecoder : Decoder Stat
+statDecoder =
+    Decode.map2 Stat
+        (Decode.at [ "stat", "name" ] string)
+        (Decode.map String.fromInt (field "base_stat" int))
+
 
 
 -- 4. VISTA
@@ -123,10 +138,18 @@ view model =
                     , img [ src pokemon.imageUrl, alt pokemon.name ] []
                     , p [] [ text "Tipos:" ]
                     , ul [] (List.map (\t -> li [] [ text t ]) pokemon.types)
+                    , p [] [ text "Estadisticas:" ]
+                    , ul [] (List.map viewStat pokemon.stats)
                     ]
         ]
 
+viewStat : Stat -> Html Msg
+viewStat stat =
+    li [] [ text (stat.name ++ ": " ++ stat.value) ]
 
+
+
+-- no hay necesidad de usar una subscripcion
 main : Program () Model Msg
 main =
     Browser.element
