@@ -36,6 +36,8 @@ Para usar elm-live con hot reload `npm run dev`. Con eso los cambios que se haga
 
 Para ejecutar el ejemplo de la PokéAPI en el navegador, usar `npm run dev:api` y abrir `http://localhost:8000/api.html`. Este comando compila `src/Examples/API.elm` y sirve la página `api.html`; la presentación normal sigue disponible con `npm run dev`.
 
+Para ejecutar el ejemplo de Ports, usar `npm run dev:port` y abrir `http://localhost:8000/portexample.html`. Elm genera `portexample.js` y `port.js` conecta los puertos con `localStorage` para guardar y recuperar la nota.
+
 Lo que hace es lo siguiente:
 - Se ejecuta el comando `elm-live src/Main.elm --hot -- --output=elm.js` que indica que se compile el `src/Main.elm` para generar `elm.js` (un archivo tirado en la raíz de este proyecto) y que el proceso se quede escuchando los cambios para hacer el hot reload
 - Adentro del `index.html` se importa dicho codigo usando `<script src="elm.js"></script>`, y luego se invoca a la función main de ese modulo con `Elm.Main.init({ node: document.getElementById("app") });`. 

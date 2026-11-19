@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "elm-live src/Main.elm --hot -- --output=elm.js",
     "dev:api": "elm-live src/Examples/API.elm --hot -- --output=api.js",
+    "dev:port": "elm-live src/Examples/PortsExample.elm --hot -- --output=portexample.js",
     "repl": "elm repl",
     "compile": "npx elm make"
   },
