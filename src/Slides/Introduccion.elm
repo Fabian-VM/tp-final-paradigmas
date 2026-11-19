@@ -1,7 +1,12 @@
 module Slides.Introduccion exposing (view)
 
-import Html exposing (Html, div, h1, li, p, ul, text)
+import Html exposing (Html, div, h1, li, p, ul, text, pre, code)
 import Html.Attributes exposing (class)
+
+codigo : String
+codigo = """hello : String -> String
+hello nombre = "Hola " ++ nombre
+"""
 
 view : Html msg
 view =
@@ -18,4 +23,8 @@ view =
             , li [] [ text "Para ello propone su propio modelo llamado \"The Elm Architecture (TEA)\"." ]
             , li [] [ text "Incluso posee un framework llamado \"Elm Land\"." ]
             ]
+
+        , pre [ class "code-example" ]
+            [ code [] [ text codigo ] ]
+
         ]
