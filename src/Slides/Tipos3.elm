@@ -7,10 +7,10 @@ import Html.Attributes exposing (class)
 codigo : String
 codigo = 
     """type EstadoPedido =
-  Pagado                  -- Pagado : EstadoPedido
-  | Enviado               -- Enviado : EstadoPedido
-  | PagoRechazado String  -- <function> String -> PagoRechazado : EstadoPedido
-  | EnvioCancelado String -- <function> String -> EnvioCancelado : EstadoPedido
+  Pagado                        -- Pagado : EstadoPedido
+  | Enviado                     -- Enviado : EstadoPedido
+  | PagoRechazado String        -- <function> String -> PagoRechazado : EstadoPedido
+  | EnvioCancelado String       -- <function> String -> EnvioCancelado : EstadoPedido
 
 describirEstado : EstadoPedido -> String
 describirEstado estado = 
@@ -18,8 +18,8 @@ describirEstado estado =
         Pagado  -> "Éxito"
         Enviado -> "Éxito" 
         -- Desempaquetar con pattern matching para armar un mensaje
-        PagoRechazado descripcion  -> "Fracaso: " ++ descripcion
-        EnvioCancelado descripcion -> "Fracaso: " ++ descripcion
+        (PagoRechazado descripcion)  -> "Fracaso: " ++ descripcion
+        (EnvioCancelado descripcion) -> "Fracaso: " ++ descripcion
 """
 
 view : Html msg

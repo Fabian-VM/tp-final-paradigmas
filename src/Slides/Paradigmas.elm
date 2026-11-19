@@ -8,17 +8,14 @@ view =
         [ h1 [] [ text "3. Paradigmas" ]
 
         , p []
-            [ text "Inicialmente basado en la Programación Funcional Reactiva (FRP)." ]
+            [ text "Fue inicialmente basado en la Programación Funcional Reactiva (FRP)." ]
 
         , p []
-            [ text "Debido a la alta complejidad, creó su propio modelo The Elm Architecture (TEA)." ]
+            [ text "Debido a la alta complejidad, tiró la toalla y creó su propio modelo The Elm Architecture (TEA)." ]
 
         , p []
             [ text "Soporta la programación funcional, y los aspectos reactivos necesarios." ]
 
         , p []
-            [ text "Pueden lograrse algunos aspectos de la programación orientada a objetos." ]
-
-        , p []
-            [ text "No admite aspectos de la programación imperativa, ni lógica." ]
+            [ text "No admite aspectos del resto de paradigmas, a lo sumo algunos de la programación orientada a objetos." ]
         ]

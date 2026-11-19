@@ -9,7 +9,7 @@ view =
     div [ class "content-slide" ]
         [ h1 [] [ text "4. Tipos de datos" ]
         , p []
-            [ text "Sobre su sistema de tipos:" ]
+            [ text "Su sistema de tipos es deliberadamente minimalista:" ]
 
         , ul []
             [ li []

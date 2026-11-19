@@ -1,14 +1,8 @@
 module Slides.Comunicacion4 exposing (view)
 
-import Html exposing (Html, div, h1, p, text, pre, code)
+import Html exposing (Html, div, h1, p, text)
 import Html.Attributes exposing (class)
 
-codigo : String
-codigo = 
-    """
-Código acá
-
-"""
 
 view : Html msg
 view =
@@ -18,6 +12,4 @@ view =
         , p []
             [ text "Es posible comunicarse con código de Javascript fuera de Elm, a través de puertos." ]
 
-        , pre [ class "code-example" ]
-            [ code [] [ text codigo ] ]
         ]

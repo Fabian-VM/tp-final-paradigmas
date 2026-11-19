@@ -1,14 +1,8 @@
 module Slides.Comunicacion2 exposing (view)
 
-import Html exposing (Html, div, h1, p, text, pre, code)
+import Html exposing (Html, div, h1, p, text)
 import Html.Attributes exposing (class)
 
-codigo : String
-codigo = 
-    """
-Código acá
-
-"""
 
 view : Html msg
 view =
@@ -21,6 +15,5 @@ view =
         , p []
             [ text "El tipo de dato Sub representa la declaración de interés por un evento global del navegador, y qué mensaje se debe recibir cuando suceda." ]
 
-        , pre [ class "code-example" ]
-            [ code [] [ text codigo ] ]
+
         ]

@@ -6,7 +6,7 @@ import Html.Attributes exposing (class)
 
 codigo : String
 codigo = 
-    """-- TIPOS DE DATOS SIMPLES                    -- TIPOS DE DATOS ESTRUCTURADOS
+    """-- TIPOS DE DATOS SIMPLES                       -- TIPOS DE DATOS ESTRUCTURADOS
 
 Int     -- 1                                    List    -- [1, 2, 3]
 Float   -- 1.1                                  Tuple   -- (1, 'A'), (1, 'A', True)
@@ -30,7 +30,7 @@ view =
         [ h1 [] [ text "4. Tipos de datos" ]
 
         , p []
-            [ text "Sus tipos de datos predefinidos más importantes" ]
+            [ text "Sus tipos de datos predefinidos más importantes, lo justo y necesario." ]
         
         , pre [ class "code-example" ]
             [ code [] [ text codigo ] ]

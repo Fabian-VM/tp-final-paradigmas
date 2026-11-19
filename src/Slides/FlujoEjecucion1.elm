@@ -7,18 +7,19 @@ import Html.Attributes exposing (class)
 codigo : String
 codigo = 
     """-- OPERADORES DE COMPOSICIÓN Y PIPE
+-- Todas las expresiones poseen la semántica f (g x)
 
 -- <<  Composición convencional
--- (f << g) x  =  f (g x)
+-- (f << g) x 
 
--- >>  Composición hacia la derecha
--- (g >> f) x  =  f (g x)
+-- >>  Composición hacia la derecha 
+-- (g >> f) x 
 
 -- |>  Pipe de resultados hacia la derecha
--- x |> g |> f  =  f (g x)
+-- x |> g |> f 
 
 -- <|  Pipe de resultados hacia la izquierda
--- f <| g <| x  =  f (g x)
+-- f <| g <| x 
 """
 
 view : Html msg

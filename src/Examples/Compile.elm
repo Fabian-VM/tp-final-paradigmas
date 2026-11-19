@@ -1,7 +1,7 @@
 module Examples.Compile exposing (..)
 import Html
 
--- IMPLEMENTACIÓN
+-- 2. IMPLEMENTACIÓN
 
 -- Elm - Realiza la sumatoria de los números enteros de la lista
 vsum : List Int -> Int 
@@ -10,9 +10,12 @@ vsum list =
         x :: xs -> x + vsum xs
         [] -> 0
 
+
+
+
+-- Ignorar esto
 -- Al compilar es necesario que tenga un main
 -- El main debe usar la función, de lo contrario no lo incluye en el archivo compilado
 main : Html.Html a
 main =
-    let result = vsum [1, 2, 3, 4, 5]
-    in Html.text (String.fromInt result)
+    Html.text <| String.fromInt <| vsum [1, 2, 3, 4, 5]

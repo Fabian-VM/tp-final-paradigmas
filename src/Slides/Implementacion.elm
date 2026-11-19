@@ -16,7 +16,7 @@ view =
         , ol []
             [ li []
                 [ b [] [ text "Parseo: " ]
-                , text "generación de árbol sintáctico, se mantiene y refina en todo el proceso."
+                , text "generación de árbol sintáctico, que se refina en las siguientes etapas."
                 ]
 
             , li []
@@ -44,4 +44,8 @@ view =
                 , text "traducción del árbol a Javascript."
                 ]
             ]
+
+        , p []
+            [ text "Ejemplo de código compilado." ]
+
         ]
